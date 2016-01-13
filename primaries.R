@@ -27,5 +27,8 @@ totalFacebook$date = gsub("\\)", "", gsub("/Date\\(","", totalFacebook$date))
 totalFacebook$date = gsub("000/", "", totalFacebook$date )
 
 #Converting dates to human readable!
-date = as.Date(as.POSIXct(as.numeric(totalFacebook$date), origin="1970-01-01"))
+totalFacebook$date = as.Date(as.POSIXct(as.numeric(totalFacebook$date), origin="1970-01-01"))
+
+my.df <- data.frame(lapply(totalFacebook, as.character), stringsAsFactors=FALSE)
+write.table(my.df, file = "df.csv")
 
